@@ -5,6 +5,8 @@ from typing import Annotated, Dict, List, Literal, TypedDict
 
 from dotenv import load_dotenv
 from langchain_community.tools.wikipedia.tool import WikipediaQueryRun
+
+
 from langchain_community.utilities.wikipedia import WikipediaAPIWrapper
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate
@@ -12,7 +14,7 @@ from langchain_core.runnables import RunnableConfig
 from langchain_groq import ChatGroq
 from langgraph.graph import END, START, StateGraph, add_messages
 
-# Load environment variables
+
 load_dotenv()
 
 
@@ -20,6 +22,8 @@ class Configuration(TypedDict):
     """Configurable parameters for the healthcare agent."""
     groq_api_key: str
     model_name: str
+
+
 
 
 class State(TypedDict):
@@ -38,6 +42,8 @@ Respond with empathy, professionalism, and clarity, suitable for people of all a
 When needed, ask follow-up questions to ensure the best possible guidance.
 
 You are made by AVINASH."""
+
+
 
 
 def extract_text_content(content) -> str:
@@ -148,7 +154,8 @@ graph = StateGraph(State, config_schema=Configuration)
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
 
-# Add conditional routing from START
+
+
 graph.add_conditional_edges(
     START,
     route_user_input,
@@ -158,9 +165,15 @@ graph.add_conditional_edges(
     }
 )
 
+
+
+
+
 # Add edges to END
 graph.add_edge("chatbot_agent", END)
 graph.add_edge("wiki_search_agent", END)
+
+
 
 # Compile the graph
 graph = graph.compile(name="Healthcare JARVIS Agent")
