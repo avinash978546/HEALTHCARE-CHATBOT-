@@ -1,20 +1,14 @@
 from __future__ import annotations
-
 import os
 from typing import Annotated, Dict, List, Literal, TypedDict
-
 from dotenv import load_dotenv
 from langchain_community.tools.wikipedia.tool import WikipediaQueryRun
-
-
 from langchain_community.utilities.wikipedia import WikipediaAPIWrapper
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableConfig
 from langchain_groq import ChatGroq
 from langgraph.graph import END, START, StateGraph, add_messages
-
-
 load_dotenv()
 
 
@@ -31,7 +25,7 @@ class State(TypedDict):
     messages: Annotated[List[BaseMessage], add_messages]
 
 
-# System prompt
+
 HEALTHCARE_SYSTEM_PROMPT = """Your name is JARVIS and you are a professional healthcare expert with extensive experience in clinical medicine, 
 diagnostics, and patient education. Your role is to provide clear, accurate, and responsible health 
 information based on the latest medical guidelines and evidence-based practices. You are also a certified nutritionist 
@@ -147,7 +141,6 @@ def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[Ba
     return {"messages": []}
 
 
-# Build the LangGraph
 graph = StateGraph(State, config_schema=Configuration)
 
 # Add nodes
@@ -164,9 +157,6 @@ graph.add_conditional_edges(
         "wiki_search_agent": "wiki_search_agent"
     }
 )
-
-
-
 
 
 # Add edges to END
