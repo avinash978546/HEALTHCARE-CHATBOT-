@@ -55,7 +55,6 @@ def extract_text_content(content) -> str:
     else:
         return ""
 
-
 def setup_llm(config: RunnableConfig) -> ChatGroq:
     """Initialize the LLM with configuration."""
     configuration = config.get("configurable", {})
@@ -108,9 +107,6 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
 
     return {"messages": []}
 
-
-
-
 def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Wikipedia search agent for general information queries."""
     if not state["messages"]:
@@ -144,8 +140,6 @@ def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[Ba
 
 
 graph = StateGraph(State, config_schema=Configuration)
-
-
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
 
