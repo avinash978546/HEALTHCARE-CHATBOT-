@@ -68,7 +68,7 @@ def setup_llm(config: RunnableConfig) -> ChatGroq:
         groq_api_key=api_key
     )
 
-
+#this is route user input
 
 def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agent"]:
     """Route user input to appropriate agent based on content."""
@@ -99,7 +99,8 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
             ("system", HEALTHCARE_SYSTEM_PROMPT),
             ("human", "{input}")
         ])
-#chain
+
+
         chain = prompt | llm
         response = chain.invoke({"input": extract_text_content(last_message.content)})
 
@@ -137,8 +138,7 @@ def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[Ba
             return {"messages": [AIMessage(content=error_message)]}
 
     return {"messages": []}
-
-
+#graph 
 graph = StateGraph(State, config_schema=Configuration)
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
