@@ -99,14 +99,14 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
             ("system", HEALTHCARE_SYSTEM_PROMPT),
             ("human", "{input}")
         ])
-
+#chain
         chain = prompt | llm
         response = chain.invoke({"input": extract_text_content(last_message.content)})
 
         return {"messages": [AIMessage(content=response.content)]}
 
     return {"messages": []}
-
+#wiki search
 def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Wikipedia search agent for general information queries."""
     if not state["messages"]:
