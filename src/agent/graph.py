@@ -11,19 +11,20 @@ from langchain_groq import ChatGroq
 from langgraph.graph import END, START, StateGraph, add_messages
 load_dotenv()
 
-
+#class config
 class Configuration(TypedDict):
     """Configurable parameters for the healthcare agent."""
     groq_api_key: str
     model_name: str
 
-
+#class state
 
 
 class State(TypedDict):
     """State for the healthcare chatbot agent."""
     messages: Annotated[List[BaseMessage], add_messages]
 
+#prompt
 
 
 HEALTHCARE_SYSTEM_PROMPT = """Your name is JARVIS and you are a professional healthcare expert with extensive experience in clinical medicine, 
