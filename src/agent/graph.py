@@ -18,16 +18,15 @@ class Configuration(TypedDict):
     model_name: str
 
 
-# Define the state for the healthcare chatbot agent
+# This module defines a healthcare chatbot agent that provides medical and nutritional advice.
+# It uses the Groq LLM for generating responses and can also perform Wikipedia searches for general information queries.
+
 class State(TypedDict):
     """State for the healthcare chatbot agent."""
     messages: Annotated[List[BaseMessage], add_messages]
 
 
 
-# System prompt for the healthcare agent
-# This prompt sets the context and role of the agent, ensuring it provides accurate and responsible healthcare information.
-# It also includes a note about the agent being a certified nutritionist, which is important for providing dietary advice.
 
 
 HEALTHCARE_SYSTEM_PROMPT = """Your name is JARVIS and you are a professional healthcare expert with extensive experience in clinical medicine, 
@@ -40,7 +39,6 @@ Respond with empathy, professionalism, and clarity, suitable for people of all a
 When needed, ask follow-up questions to ensure the best possible guidance.
 
 You are made by AVINASH."""
-
 
 
 def extract_text_content(content) -> str:
@@ -72,7 +70,6 @@ def setup_llm(config: RunnableConfig) -> ChatGroq:
         groq_api_key=api_key
     )
 
-#this is route user input
 
 def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agent"]:
     """Route user input to appropriate agent based on content."""
