@@ -18,8 +18,7 @@ class Configuration(TypedDict):
     model_name: str
 
 
-# This module defines a healthcare chatbot agent that provides medical and nutritional advice.
-# It uses the Groq LLM for generating responses and can also perform Wikipedia searches for general information queries.
+
 
 class State(TypedDict):
     """State for the healthcare chatbot agent."""
@@ -87,7 +86,6 @@ def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agen
     return "chatbot_agent"
 
 
-
 def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Healthcare chatbot agent that provides medical and nutritional advice."""
     if not state["messages"]:
@@ -143,10 +141,13 @@ def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[Ba
 
     return {"messages": []}
 #graph 
+
+
+
+
 graph = StateGraph(State, config_schema=Configuration)
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
-
 
 
 graph.add_conditional_edges(
