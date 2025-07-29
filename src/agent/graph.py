@@ -18,10 +18,16 @@ class Configuration(TypedDict):
     model_name: str
 
 
+# Define the state for the healthcare chatbot agent
 class State(TypedDict):
     """State for the healthcare chatbot agent."""
     messages: Annotated[List[BaseMessage], add_messages]
 
+
+
+# System prompt for the healthcare agent
+# This prompt sets the context and role of the agent, ensuring it provides accurate and responsible healthcare information.
+# It also includes a note about the agent being a certified nutritionist, which is important for providing dietary advice.
 
 
 HEALTHCARE_SYSTEM_PROMPT = """Your name is JARVIS and you are a professional healthcare expert with extensive experience in clinical medicine, 
@@ -84,6 +90,7 @@ def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agen
     return "chatbot_agent"
 
 
+
 def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Healthcare chatbot agent that provides medical and nutritional advice."""
     if not state["messages"]:
@@ -105,8 +112,6 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
         return {"messages": [AIMessage(content=response.content)]}
 
     return {"messages": []}
-
-
 
 
 
