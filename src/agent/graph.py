@@ -70,6 +70,24 @@ def setup_llm(config: RunnableConfig) -> ChatGroq:
     )
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agent"]:
     """Route user input to appropriate agent based on content."""
     if not state["messages"]:
@@ -108,8 +126,6 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
 
     return {"messages": []}
 
-
-
 def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Wikipedia search agent for general information queries."""
     if not state["messages"]:
@@ -141,10 +157,6 @@ def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[Ba
 
     return {"messages": []}
 #graph 
-
-
-
-
 graph = StateGraph(State, config_schema=Configuration)
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
@@ -159,8 +171,6 @@ graph.add_conditional_edges(
     }
 )
 
-
-# Add edges to END
 graph.add_edge("chatbot_agent", END)
 graph.add_edge("wiki_search_agent", END)
 
