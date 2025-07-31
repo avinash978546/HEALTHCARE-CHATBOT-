@@ -69,25 +69,6 @@ def setup_llm(config: RunnableConfig) -> ChatGroq:
         groq_api_key=api_key
     )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agent"]:
     """Route user input to appropriate agent based on content."""
     if not state["messages"]:
@@ -102,6 +83,59 @@ def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agen
             return "wiki_search_agent"
 
     return "chatbot_agent"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
