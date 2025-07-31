@@ -88,56 +88,6 @@ def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agen
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Healthcare chatbot agent that provides medical and nutritional advice."""
     if not state["messages"]:
@@ -159,6 +109,41 @@ def chatbot_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMe
         return {"messages": [AIMessage(content=response.content)]}
 
     return {"messages": []}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def wiki_search_agent(state: State, config: RunnableConfig) -> Dict[str, List[BaseMessage]]:
     """Wikipedia search agent for general information queries."""
