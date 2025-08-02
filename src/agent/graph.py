@@ -146,6 +146,14 @@ graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
 
 
+
+
+# Define the start and end nodes
+
+
+
+
+
 graph.add_conditional_edges(
     START,
     route_user_input,
@@ -154,59 +162,6 @@ graph.add_conditional_edges(
         "wiki_search_agent": "wiki_search_agent"
     }
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 graph.add_edge("chatbot_agent", END)
