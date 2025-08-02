@@ -145,29 +145,7 @@ graph = StateGraph(State, config_schema=Configuration)
 graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
 
-
-
-
 # Define the start and end nodes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
