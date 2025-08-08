@@ -78,7 +78,7 @@ def route_user_input(state: State) -> Literal["chatbot_agent", "wiki_search_agen
     if isinstance(last_message, HumanMessage):
         user_input = extract_text_content(last_message.content).lower()
 
-        wiki_keywords = ["history", "wiki", "explain", "information about", "tell me about", "what is"]
+        wiki_keywords = ["history", "wiki", "explain", "information about", "tell me about"]
         if any(keyword in user_input for keyword in wiki_keywords):
             return "wiki_search_agent"
 
@@ -145,6 +145,28 @@ graph.add_node("chatbot_agent", chatbot_agent)
 graph.add_node("wiki_search_agent", wiki_search_agent)
 
 # Define the start and end nodes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
